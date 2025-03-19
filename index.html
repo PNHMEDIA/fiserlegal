@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUDr. Ing. Jan Fišer | Advokátní kancelář</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Base Variables */
+        :root {
+            --color-primary: #0F2847;
+            --color-secondary: #1E5091;
+            --color-accent: #BF9B30;
+            --color-light: #F5F5F7;
+            --color-dark: #111827;
+            --color-white: #FFFFFF;
+            --color-muted: rgba(255, 255, 255, 0.7);
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-medium: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            --spacing-24: 6rem;
+            --spacing-32: 8rem;
+            --spacing-40: 10rem;
+            --spacing-48: 12rem;
+            --spacing-56: 14rem;
+            --spacing-64: 16rem;
+            
+            --z-0: 0;
+            --z-10: 10;
+            --z-20: 20;
+            --z-30: 30;
+            --z-40: 40;
+            --z-50: 50;
+            --z-auto: auto;
+        }
+        
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--color-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-color: var(--color-white);
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-6);
+            color: var(--color-primary);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-6);
+            font-size: 1.125rem;
+        }
+        
+        a {
+            color: var(--color-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--color-accent);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-6);
+            position: relative;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-4) var(--spacing-8);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-medium);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--color-accent);
+            z-index: -1;
+            transition: width var(--transition-medium);
+        }
+        
+        .btn:hover {
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+        
+        .btn-outline:hover {
+            color: var(--color-white);
+        }
+        
+        .btn-accent {
+            background-color: var(--color-accent);
+        }
+        
+        .btn-accent::before {
+            background-color: var(--color-primary);
+        }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--color-accent);
+            width: 0%;
+            z-index: var(--z-50);
+            transition: width 0.1s ease;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--transition-medium), transform var(--transition-medium);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity var(--transition-medium), transform var(--transition-medium);
+        }
+        
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity var(--transition-medium), transform var(--transition-medium);
+        }
+        
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity var(--transition-bounce), transform var(--transition-bounce);
+        }
+        
+        .fade-in-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Delay Classes */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+        .delay-700 { transition-delay: 0.7s; }
+        .delay-800 { transition-delay: 0.8s; }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: var(--z-50);
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .preloader-content {
+            text-align: center;
+            color: var(--color-white);
+            position: relative;
+        }
+        
+        .preloader-logo {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-6);
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.3s;
+        }
+        
+        .preloader-text {
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .preloader-bar {
+            width: 200px;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preloader-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: var(--color-accent);
+            animation: progress 2.5s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+        }
+        
+        @keyframes progress {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Split Text Animation */
+        .split-text {
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .split-text span {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform var(--transition-medium), opacity var(--transition-medium);
+        }
+        
+        .split-text.reveal span {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--z-40);
+            transition: background-color var(--transition-medium), padding var(--transition-medium);
+            padding: var(--spacing-6) 0;
+        }
+        
+        .header.scrolled {
+            background-color: var(--color-primary);
+            padding: var(--spacing-4) 0;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--color-white);
+            z-index: var(--z-20);
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: var(--spacing-4);
+            position: relative;
+        }
+        
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-name {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: var(--z-20);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            gap: var(--spacing-8);
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--color-white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: var(--spacing-2) 0;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width var(--transition-medium);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .lang-switcher {
+            margin-left: var(--spacing-8);
+            display: flex;
+            gap: var(--spacing-4);
+        }
+        
+        .lang-link {
+            color: var(--color-white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.7;
+            transition: opacity var(--transition-fast);
+        }
+        
+        .lang-link:hover {
+            opacity: 1;
+            color: var(--color-white);
+        }
+        
+        .lang-link.active {
+            opacity: 1;
+            color: var(--color-accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: var(--z-0);
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 40, 71, 0.85);
+            z-index: var(--z-10);
+        }
+        
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: var(--z-10);
+            max-width: 800px;
+            padding-top: var(--spacing-20);
+            text-align: left;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: var(--spacing-2) var(--spacing-5);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-8);
+            border-left: 2px solid var(--color-accent);
+        }
+        
+        .hero-title {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-8);
+            font-weight: 800;
+        }
+        
+        .hero-title span {
+            color: var(--color-accent);
+        }
+        
+        .hero-description {
+            color: var(--color-muted);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: var(--spacing-10);
+            font-weight: 300;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--spacing-4);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--spacing-10);
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: var(--z-10);
+        }
+        
+        .scroll-indicator-text {
+            color: var(--color-white);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-4);
+            opacity: 0.7;
+        }
+        
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            border: 2px solid var(--color-accent);
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+            transform: translate(-50%, -60%) rotate(45deg);
+            animation: scrollArrow 2s infinite;
+        }
+        
+        @keyframes scrollArrow {
+            0% {
+                transform: translate(-50%, -60%) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -20%) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: var(--spacing-32) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230F2847' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: var(--z-0);
+            opacity: 0.5;
+        }
+        
+        .section-header {
+            text-align: left;
+            margin-bottom: var(--spacing-16);
+            position: relative;
+        }
+        
+        .section-title {
+            margin-bottom: var(--spacing-6);
+            position: relative;
+            display: inline-block;
+            padding-bottom: var(--spacing-4);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background-color: var(--color-accent);
+        }
+        
+        .section-subtitle {
+            color: var(--color-accent);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-top: var(--spacing-4);
+            letter-spacing: 0.05em;
+            display: block;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-16);
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 0px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            height: 100%;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            border: 1px solid var(--color-accent);
+            top: 15px;
+            left: 15px;
+            z-index: var(--z-10);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--transition-slow);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content h3 {
+            margin-bottom: var(--spacing-6);
+            color: var(--color-primary);
+            font-size: 1.8rem;
+        }
+        
+        .about-text {
+            margin-bottom: var(--spacing-8);
+            color: var(--color-dark);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-10);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            background-color: rgba(15, 40, 71, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            transition: all var(--transition-medium);
+        }
+        
+        .feature-item:hover .feature-icon {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-5px);
+        }
+        
+        .feature-text {
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-primary);
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: var(--spacing-32) 0;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-section .section-title {
+            color: var(--color-white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-8);
+        }
+        
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: var(--spacing-10) var(--spacing-8);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+            z-index: var(--z-10);
+            height: 100%;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background-color: var(--color-accent);
+            transition: height var(--transition-medium);
+            z-index: var(--z-0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .service-card:hover::before {
+            height: 100%;
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-6);
+            transition: transform var(--transition-medium);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: translateY(-5px);
+        }
+        
+        .service-title {
+            color: var(--color-white);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .service-description {
+            color: var(--color-muted);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-4);
+            line-height: 1.7;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap var(--transition-medium);
+        }
+        
+        .service-link:hover {
+            gap: var(--spacing-4);
+            color: var(--color-accent);
+        }
+        
+        /* Practice Areas Section */
+        .practice-section {
+            padding: var(--spacing-32) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-8);
+        }
+        
+        .practice-card {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .practice-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: var(--z-0);
+        }
+        
+        .practice-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .practice-card:hover .practice-image img {
+            transform: scale(1.05);
+        }
+        
+        .practice-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 40, 71, 0.9) 0%, rgba(15, 40, 71, 0.6) 40%, rgba(15, 40, 71, 0.1) 100%);
+            z-index: var(--z-10);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: var(--spacing-8);
+            transition: background var(--transition-medium);
+        }
+        
+        .practice-card:hover .practice-overlay {
+            background: linear-gradient(to top, rgba(15, 40, 71, 0.95) 0%, rgba(15, 40, 71, 0.8) 60%, rgba(15, 40, 71, 0.6) 100%);
+        }
+        
+        .practice-title {
+            color: var(--color-white);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-6);
+            position: relative;
+            transform: translateY(var(--spacing-8));
+            transition: transform var(--transition-medium);
+        }
+        
+        .practice-description {
+            color: var(--color-muted);
+            margin-bottom: var(--spacing-6);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: transform var(--transition-medium), opacity var(--transition-medium);
+        }
+        
+        .practice-link {
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: transform var(--transition-medium), opacity var(--transition-medium), gap var(--transition-medium);
+        }
+        
+        .practice-link:hover {
+            gap: var(--spacing-4);
+            color: var(--color-accent);
+        }
+        
+        .practice-card:hover .practice-title {
+            transform: translateY(0);
+        }
+        
+        .practice-card:hover .practice-description,
+        .practice-card:hover .practice-link {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: var(--spacing-32) 0;
+            background-color: #F9F9FB;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-container {
+            position: relative;
+            padding: var(--spacing-16) 0;
+        }
+        
+        .testimonial-quotes {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 15rem;
+            color: rgba(15, 40, 71, 0.03);
+            font-family: var(--font-heading);
+            line-height: 0;
+            height: 0;
+        }
+        
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-item {
+            text-align: center;
+        }
+        
+        .testimonial-content {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-position {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-top: var(--spacing-2);
+        }
+        
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-4);
+            margin-top: var(--spacing-10);
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(15, 40, 71, 0.1);
+            cursor: pointer;
+            transition: background-color var(--transition-medium), transform var(--transition-medium);
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--color-accent);
+            transform: scale(1.3);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: var(--spacing-32) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section .section-title::after {
+            left: 0;
+            transform: none;
+        }
+        
+        .contact-section .section-header {
+            text-align: left;
+            margin-bottom: var(--spacing-10);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-16);
+        }
+        
+        .contact-info {
+            position: relative;
+        }
+        
+        .contact-info-card {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: var(--spacing-10);
+            height: 100%;
+            box-shadow: var(--shadow-lg);
+            z-index: var(--z-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(191, 155, 48, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            transform: translate(150px, -150px);
+            z-index: var(--z-0);
+        }
+        
+        .contact-info-title {
+            font-size: 1.5rem;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-8);
+            position: relative;
+            display: inline-block;
+            padding-bottom: var(--spacing-4);
+        }
+        
+        .contact-info-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--color-accent);
+        }
+        
+        .contact-details {
+            margin-bottom: var(--spacing-10);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0;
+            font-size: 1.2rem;
+            color: var(--color-accent);
+            flex-shrink: 0;
+            transition: all var(--transition-medium);
+        }
+        
+        .contact-item:hover .contact-icon {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            transform: translateY(-5px);
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-1);
+        }
+        
+        .contact-text {
+            color: var(--color-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .contact-form {
+            position: relative;
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-2);
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-4);
+            border: 1px solid rgba(15, 40, 71, 0.1);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+            background-color: #FFFFFF;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(191, 155, 48, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-6);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: var(--spacing-20) 0 var(--spacing-8);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .footer-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: var(--z-0);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-16);
+            margin-bottom: var(--spacing-16);
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: var(--spacing-4);
+        }
+        
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo-name {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .footer-logo-subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+        
+        .footer-about {
+            color: var(--color-muted);
+            margin-bottom: var(--spacing-8);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: var(--spacing-4);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: all var(--transition-medium);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            transform: translateY(-5px);
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-8);
+            position: relative;
+            display: inline-block;
+            padding-bottom: var(--spacing-4);
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent);
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--spacing-3);
+        }
+        
+        .footer-link {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            transition: color var(--transition-fast), transform var(--transition-fast);
+            display: inline-block;
+        }
+        
+        .footer-link:hover {
+            color: var(--color-accent);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: var(--spacing-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-muted);
+            font-size: 0.9rem;
+        }
+        
+        .copyright a {
+            color: var(--color-accent);
+        }
+        
+        /* 3D Elements */
+        .parallax-element {
+            transition: transform var(--transition-medium);
+            will-change: transform;
+        }
+        
+        /* Float Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Magnetic Button Effect */
+        .magnetic-button {
+            position: relative;
+            overflow: visible;
+        }
+        
+        /* Wave Animation */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%230F2847" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,133.3C384,149,480,139,576,122.7C672,107,768,85,864,101.3C960,117,1056,171,1152,186.7C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            z-index: var(--z-0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            :root {
+                --spacing-32: 6rem;
+                --spacing-40: 8rem;
+                --spacing-48: 10rem;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-grid, 
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-10);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-10);
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--color-primary);
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                padding: var(--spacing-10);
+                transform: translateX(100%);
+                transition: transform var(--transition-medium);
+                z-index: var(--z-10);
+                box-shadow: var(--shadow-xl);
+            }
+            
+            .nav.active {
+                transform: translateX(0);
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: var(--spacing-6);
+                width: 100%;
+            }
+            
+            .lang-switcher {
+                margin-left: 0;
+                margin-top: var(--spacing-8);
+            }
+            
+            .about-image {
+                height: 400px;
+            }
+            
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info-card {
+                margin-bottom: var(--spacing-8);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --spacing-16: 3rem;
+                --spacing-20: 4rem;
+                --spacing-24: 5rem;
+                --spacing-32: 5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-4);
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+        }
+        /* Úpravy pro správné zarovnání hero textu vlevo */
+.hero-content {
+  position: relative;
+  z-index: var(--z-10);
+  max-width: 800px;
+  padding-top: var(--spacing-20);
+  text-align: left;
+  margin-right: auto;
+  margin-left: 0;
+  width: 100%;
+}
+
+.hero-title {
+  text-align: left;
+  width: 100%;
+  display: block;
+  margin-left: 0;
+}
+
+.hero-title span {
+  text-align: left;
+  display: inline-block;
+}
+
+.split-text {
+  text-align: left;
+}
+
+.container {
+  text-align: left;
+}
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">FišerLegal</div>
+            <div class="preloader-text">Advokátní kancelář</div>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25 2L2 12V38L25 48L48 38V12L25 2Z" stroke="#BF9B30" stroke-width="2"/>
+                            <path d="M25 2L25 48" stroke="#BF9B30" stroke-width="2" stroke-dasharray="4 4"/>
+                            <path d="M2 12L48 38" stroke="#BF9B30" stroke-width="2" stroke-dasharray="4 4"/>
+                            <path d="M48 12L2 38" stroke="#BF9B30" stroke-width="2" stroke-dasharray="4 4"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">FišerLegal</span>
+                        <span class="logo-subtitle">JUDr. Ing. Jan Fišer</span>
+                    </div>
+                </a>
+                
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link active">Úvod</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about" class="nav-link">O nás</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#services" class="nav-link">Služby</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#practice" class="nav-link">Specializace</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">Kontakt</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="lang-switcher">
+                        <a href="#" class="lang-link active">CZ</a>
+                        <a href="#" class="lang-link">EN</a>
+                        <a href="#" class="lang-link">DE</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+             
+                <img src="https://i.postimg.cc/5N4nSkp3/pexels-august-de-richelieu-4427614.jpg" >
+           
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" style="text-align: left;">
+                     Profesionální právní   poradenství na míru 
+                </h1>
+                <div class="hero-badge fade-in">Advokátní kancelář v Praze</div>
+                <p class="hero-description fade-in delay-200">Advokátní kancelář FišerLegal poskytuje komplexní právní služby výjimečné kvality ve všech základních oblastech práva.</p>
+                <div class="hero-cta fade-in delay-300">
+                    <a href="#contact" class="btn magnetic-button">Kontaktujte nás</a>
+                    <a href="#practice" class="btn btn-outline magnetic-button" style="color: white; border: 1px white;">Právní oblasti</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator fade-in delay-400">
+            <div class="scroll-indicator-text">Posunout dolů</div>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-pattern"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">O advokátní kanceláři</h2>
+                <span class="section-subtitle fade-in">Naše kancelář</span>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-image fade-in-left">
+                    <img src="https://i.postimg.cc/KzbHScrX/image.png" alt="FišerLegal">
+                </div>
+                
+                <div class="about-content">
+                    <h3 class="fade-in">Mladý dynamický tým s odhodláním</h3>
+                    <p class="about-text fade-in delay-100">Stavíme na mladém dynamickém týmu, který s odhodláním řeší i ty nejsložitější případy. Nejen že klademe důraz na rozvoj dlouhodobých vztahů, ale nabízíme také služby v jednotlivých případech.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item fade-in-scale delay-200">
+                            <div class="feature-icon float">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="feature-text">Komplexní právní služby ve všech základních oblastech práva</div>
+                        </div>
+                        
+                        <div class="feature-item fade-in-scale delay-300">
+                            <div class="feature-icon float">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="feature-text">Personalizovaný přístup ke každému případu</div>
+                        </div>
+                        
+                        <div class="feature-item fade-in-scale delay-400">
+                            <div class="feature-icon float">
+                                <i class="fas fa-globe-europe"></i>
+                            </div>
+                            <div class="feature-text">Právní služby v angličtině a němčině</div>
+                        </div>
+                        
+                        <div class="feature-item fade-in-scale delay-500">
+                            <div class="feature-icon float">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="feature-text">Prvotřídní řešení bez zbytečného odkladu</div>
+                        </div>
+                    </div>
+                    
+                    <a href="/cs/profil-advokatni-kancelare/" class="btn fade-in delay-600 magnetic-button">Více o nás</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Co nabízíme</h2>
+                <span class="section-subtitle fade-in">Naše služby</span>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="service-title">Komplexní služby</h3>
+                    <p class="service-description">Poskytujeme komplexní právní služby výjimečné kvality ve všech základních oblastech práva, což zajišťuje, že získáte odborné vedení v každé fázi.</p>
+                    <a href="#" class="service-link">Zjistit více <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card fade-in delay-100">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="service-title">Individuální přístup</h3>
+                    <p class="service-description">Naším cílem je poskytnout spokojenost klientům, kteří ocení individuální, personalizovaný přístup a prvotřídní řešení bez zbytečného prodlení.</p>
+                    <a href="#" class="service-link">Zjistit více <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card fade-in delay-200">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-europe"></i>
+                    </div>
+                    <h3 class="service-title">Vícejazyčné služby</h3>
+                    <p class="service-description">Advokátní kancelář může poskytovat právní poradenství a služby v angličtině a němčině. V blízké budoucnosti budeme moci nabídnout stejné služby ve francouzštině.</p>
+                    <a href="#" class="service-link">Zjistit více <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Practice Areas Section -->
+    <section class="practice-section" id="practice">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Právní oblasti</h2>
+                <span class="section-subtitle fade-in">Specializace</span>
+            </div>
+            
+            <div class="practice-grid">
+                <div class="practice-card fade-in">
+                    <div class="practice-image">
+                        <img src="https://i.postimg.cc/KzbHScrX/image.png" alt="Litigace, insolvenční řízení">
+                    </div>
+                    <div class="practice-overlay">
+                        <h3 class="practice-title">Litigace a insolvenční řízení</h3>
+                        <p class="practice-description">Odborné zastoupení v soudních řízeních a komplexní řešení pro insolvenční a konkurzní případy.</p>
+                        <a href="/cs/litigace-insolvencni-rizeni/" class="practice-link">Zjistit více <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="practice-card fade-in delay-100">
+                    <div class="practice-image">
+                        <img src="https://i.postimg.cc/KzbHScrX/image.png" alt="Korporátní právo">
+                    </div>
+                    <div class="practice-overlay">
+                        <h3 class="practice-title">Korporátní právo</h3>
+                        <p class="practice-description">Právní služby pro společnosti včetně zakládání, transformací, řízení a korporátních sporů.</p>
+                        <a href="/cs/korporatni-pravo/" class="practice-link">Zjistit více <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="practice-card fade-in delay-200">
+                    <div class="practice-image">
+                        <img src="https://i.postimg.cc/KzbHScrX/image.png" alt="Obchodní právo">
+                    </div>
+                    <div class="practice-overlay">
+                        <h3 class="practice-title">Obchodní právo</h3>
+                        <p class="practice-description">Odbornost v obchodních vztazích, obchodních smlouvách a ochraně obchodních zájmů.</p>
+                        <a href="/cs/obchodni-pravo/" class="practice-link">Zjistit více <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Co o nás říkají</h2>
+                <span class="section-subtitle fade-in">Reference klientů</span>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-quotes">"</div>
+                
+                <div class="testimonial-slider">
+                    <div class="testimonial-item fade-in-scale">
+                        <p class="testimonial-content">
+                            "Ocitli jsme se v neplánované situaci, kdy jsme byli v cizí zemi a museli jsme koupit nemovitost bez schopnosti mluvit místním jazykem. Naštěstí jsme se setkali s Janem Fišerem, perfektně anglicky mluvícím advokátem. Vše bylo jasně vysvětleno a dobré rady byly poskytnuty bezproblémovým, efektivním a přátelským způsobem."
+                        </p>
+                        <div class="testimonial-author">
+                            The Mathiesons
+                        </div>
+                        <div class="testimonial-position">
+                            Velká Británie
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-dots">
+                    <div class="testimonial-dot active"></div>
+                    <div class="testimonial-dot"></div>
+                    <div class="testimonial-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Spojte se s námi</h2>
+                <span class="section-subtitle fade-in">Kontaktujte nás</span>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info fade-in-left">
+                    <div class="contact-info-card">
+                        <h3 class="contact-info-title">Kontaktní informace</h3>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="contact-label">Adresa</div>
+                                    <div class="contact-text">
+                                        Dukelských hrdinů 23<br>
+                                        170 00 Praha 7<br>
+                                        Česká republika
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-text">
+                                        +420 728 576 065<br>
+                                        +420 273 136 357
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-fax"></i>
+                                </div>
+                                <div>
+                                    <div class="contact-label">Fax</div>
+                                    <div class="contact-text">
+                                        +420 233 372 369
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <div class="contact-label">Email</div>
+                                    <div class="contact-text">
+                                        jan.fiser@fiserlegal.cz
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-id-card"></i>
+                                </div>
+                                <div>
+                                    <div class="contact-label">Detaily</div>
+                                    <div class="contact-text">
+                                        IČ: 03428982<br>
+                                        ID datové schránky: 38vqvns<br>
+                                        Ev. č. ČAK: 15826
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in-right">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Jméno a příjmení</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Telefon</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Předmět</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Zpráva</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-accent magnetic-button">Odeslat zprávu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-pattern"></div>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25 2L2 12V38L25 48L48 38V12L25 2Z" stroke="#BF9B30" stroke-width="2"/>
+                                <path d="M25 2L25 48" stroke="#BF9B30" stroke-width="2" stroke-dasharray="4 4"/>
+                                <path d="M2 12L48 38" stroke="#BF9B30" stroke-width="2" stroke-dasharray="4 4"/>
+                                <path d="M48 12L2 38" stroke="#BF9B30" stroke-width="2" stroke-dasharray="4 4"/>
+                            </svg>
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-name">JUDr. Ing. Jan Fišer</span>
+                            <span class="footer-logo-subtitle">FišerLegal</span>
+                        </div>
+                    </div>
+                    
+                    <p class="footer-about">
+                        Advokátní kancelář FišerLegal poskytuje komplexní právní služby výjimečné kvality ve všech základních oblastech práva.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Právní oblasti</h3>
+                    
+                    <ul class="footer-links">
+                        <li><a href="/cs/litigace-insolvencni-rizeni/" class="footer-link">Litigace, insolvenční řízení</a></li>
+                        <li><a href="/cs/korporatni-pravo/" class="footer-link">Korporátní právo</a></li>
+                        <li><a href="/cs/obchodni-pravo/" class="footer-link">Obchodní právo</a></li>
+                        <li><a href="/cs/obcanske-pravo/" class="footer-link">Občanské právo</a></li>
+                        <li><a href="/cs/rodinne-pravo/" class="footer-link">Rodinné právo</a></li>
+                        <li><a href="/cs/pracovni-pravo/" class="footer-link">Pracovní právo</a></li>
+                        <li><a href="/cs/trestni-pravo/" class="footer-link">Trestní právo</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Rychlé odkazy</h3>
+                    
+                    <ul class="footer-links">
+                        <li><a href="#home" class="footer-link">Úvod</a></li>
+                        <li><a href="#about" class="footer-link">O nás</a></li>
+                        <li><a href="#services" class="footer-link">Služby</a></li>
+                        <li><a href="#practice" class="footer-link">Specializace</a></li>
+                        <li><a href="#contact" class="footer-link">Kontakt</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2014-2025 JUDr. Ing. Jan Fišer | Vytvořeno PNHMEDIA
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Wait for page to load
+        window.addEventListener('load', function() {
+            // Hide preloader after a delay
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('hidden');
+                
+                // Trigger initial animations
+                setTimeout(function() {
+                    document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale').forEach(function(element) {
+                        if (isElementInViewport(element)) {
+                            element.classList.add('visible');
+                        }
+                    });
+                    
+                    // Reveal split text animation
+                    document.querySelectorAll('.split-text').forEach(function(element) {
+                        splitTextAnimation(element);
+                    });
+                }, 600);
+            }, 2500);
+        });
+        
+        // Text splitting function
+        function splitTextAnimation(element) {
+            const text = element.textContent;
+            element.textContent = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+                span.style.transitionDelay = (0.02 * i) + 's';
+                element.appendChild(span);
+            }
+            
+            setTimeout(() => {
+                element.classList.add('reveal');
+            }, 100);
+        }
+        
+        // Scroll event listener
+        window.addEventListener('scroll', function() {
+            // Update scroll progress bar
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollTop = window.scrollY;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+            
+            // Header background on scroll
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Trigger animations on scroll
+            document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale').forEach(function(element) {
+                if (isElementInViewport(element)) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+        
+        // Check if element is in viewport
+        function isElementInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
+                rect.bottom >= 0
+            );
+        }
+        
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        navToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                
+                const icon = navToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active navigation link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(function(section) {
+                const sectionTop = section.offsetTop - 200;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 3D Parallax Effect for elements with 'parallax-element' class
+        document.addEventListener('mousemove', function(e) {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const moveX = (x - windowWidth / 2) / 50;
+            const moveY = (y - windowHeight / 2) / 50;
+            
+            parallaxElements.forEach(function(element) {
+                element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+        
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-button').forEach(function(button) {
+            button.addEventListener('mousemove', function(e) {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const moveX = (x - centerX) / 10;
+                const moveY = (y - centerY) / 10;
+                
+                button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                button.style.transform = 'translate(0, 0)';
+            });
+        });
+    </script>
+</body>
+</html>
